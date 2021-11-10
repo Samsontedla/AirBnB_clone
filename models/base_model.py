@@ -10,6 +10,7 @@ Defines a class called BaseModel
 """
 import uuid
 from datetime import datetime
+import models
 
 class BaseModel:
     """Class that represents the BaseModel for the HBnB project"""
