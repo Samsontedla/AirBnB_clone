@@ -7,7 +7,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-   "
+   
 
     prompt = '(hbnb) '
     __class_lst = {
