@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
     }
     __class_funcs = ["all", "count", "show", "destroy", "update"]
 
-    @staticmethod
+   
     def parse(arg, id=" "):
         
 
