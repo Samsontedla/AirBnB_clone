@@ -11,6 +11,12 @@ Defines a FileStorage class
 
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """
@@ -30,11 +36,11 @@ class FileStorage:
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
-        objdict = {}
+        obdict = {}
         for key in self.__objects:
-            objdict[key] = self.__objects[key].to_dict()
-        with open(self.__file_path, 'w') as f:
-            json.dump(objdict, f)
+            obdict[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w") as f:
+            json.dump(obdict, f)
 
     def reload(self):
         """deserializes the JSON file to __objects"""
