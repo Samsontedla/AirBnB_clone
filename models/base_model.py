@@ -13,7 +13,7 @@ from datetime import datetime
 import models
 
 class BaseModel:
-    """Class that represents the BaseModel for the HBnB project"""
+    """A class that represents the BaseModel for the HBnB project"""
 
     def __init__(self, *args, **kwargs):
         """
