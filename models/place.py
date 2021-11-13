@@ -12,7 +12,7 @@ Defines a class Place
 from models.base_model import BaseModel
 
 class Place(BaseModel):
-    """Class that represents a Place inheriting from BaseModel"""
+    """A class that represents a Place inheriting from BaseModel"""
 
     city_id = ""
     user_id = ""
