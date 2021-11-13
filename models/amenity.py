@@ -12,6 +12,6 @@ Defines a class Amenity
 from models.base_model import BaseModel
 
 class Amenity(BaseModel):
-    """Class that represents a Amenity inheriting from BaseModel"""
+    """A class that represents a Amenity inheriting from BaseModel"""
 
     name = ""
