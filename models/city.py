@@ -12,7 +12,7 @@ Defines a class City
 from models.base_model import BaseModel
 
 class City(BaseModel):
-    """Class that represents a City inheriting from BaseModel"""
+    """A class that represents a City inheriting from BaseModel"""
 
     state_id = ""
     name  = ""
