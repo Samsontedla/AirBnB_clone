@@ -12,7 +12,7 @@ Defines a class Review
 from models.base_model import BaseModel
 
 class Review(BaseModel):
-    """Class that represents a Review inheriting from BaseModel"""
+    """A class that represents a Review inheriting from BaseModel"""
     
     place_id = ""
     user_id = ""
