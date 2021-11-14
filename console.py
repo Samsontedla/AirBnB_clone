@@ -138,30 +138,24 @@ class HBNBCommand(cmd.Cmd):
             Deletes an instance based on the class name and id
             (save the change into the JSON file).
         """        new = args.partition(" ")
-        c_name = new[0]
-        c_id = new[2]
-        if c_id and ' ' in c_id:
-            c_id = c_id.partition(' ')[0]
-
-        if not c_name:
-            print("** class name missing **")
+               if arg == "":
+            print('** class name missing **')
             return
-
-        if c_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-
-        if not c_id:
-            print("** instance id missing **")
-            return
-
-        key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
-            storage.save()
-        except KeyError:
-            print("** no instance found **")
+            model_name, model_id = arg.split(' ')
+            models.classes[model_name]  # check the model is supported
+            models.storage.delete(model_name, model_id)
+            models.storage.save()
+
+        except Exception as e:
+
+            if arg.count(' ') == 0:
+                print("** instance id missing **")
+            elif arg.count(' ') > 1:
+                print("** too many arguments (2 arguments required)**")
+            else:
+                print(e)
 
     def help_destroy(self):
         """
@@ -203,86 +197,29 @@ class HBNBCommand(cmd.Cmd):
                 Ex: $ update BaseModel 1234-1234-1234 email
                       "aibnb@mail.com"
         """
-        c_name = c_id = att_name = att_val = kwargs = ''
-
-        # isolate cls from id/args, ex: (<cls>, delim, <id/args>)
-        args = args.partition(" ")
-        if args[0]:
-            c_name = args[0]
-        else:  # class name not present
-            print("** class name missing **")
-            return
-        if c_name not in HBNBCommand.classes:  # class name invalid
-            print("** class doesn't exist **")
+if arg == "":
+            print('** class name missing **')
             return
 
-        # isolate id from args
-        args = args[2].partition(" ")
-        if args[0]:
-            c_id = args[0]
-        else:  # id not present
-            print("** instance id missing **")
-            return
+        try:
+            # TODO: Handle case where the value to update has a space character
+            model_name, model_id, attr, value = arg.split(' ')
 
-        # generate key from class and id
-        key = c_name + "." + c_id
+            models.storage.update(model_name, model_id, attr, value)
+            models.storage.save()
 
-        # determine if key is present
-        if key not in storage.all():
-            print("** no instance found **")
-            return
-
-        # first determine if kwargs or args
-        if '{' in args[2] and '}' in args[2] and type(eval(args[2])) is dict:
-            kwargs = eval(args[2])
-            args = []  # reformat kwargs into list, ex: [<name>, <value>, ...]
-            for k, v in kwargs.items():
-                args.append(k)
-                args.append(v)
-        else:  # isolate args
-            args = args[2]
-            if args and args[0] is '\"':  # check for quoted arg
-                second_quote = args.find('\"', 1)
-                att_name = args[1:second_quote]
-                args = args[second_quote + 1:]
-
-            args = args.partition(' ')
-
-            # if att_name was not quoted arg
-            if not att_name and args[0] is not ' ':
-                att_name = args[0]
-            # check for quoted val arg
-            if args[2] and args[2][0] is '\"':
-                att_val = args[2][1:args[2].find('\"', 1)]
-
-            # if att_val was not quoted arg
-            if not att_val and args[2]:
-                att_val = args[2].partition(' ')[0]
-
-            args = [att_name, att_val]
-
-        # retrieve dictionary of current objects
-        new_dict = storage.all()[key]
-
-        # iterate through attr names and values
-        for i, att_name in enumerate(args):
-            # block only runs on even iterations
-            if (i % 2 == 0):
-                att_val = args[i + 1]  # following item is value
-                if not att_name:  # check for att_name
-                    print("** attribute name missing **")
-                    return
-                if not att_val:  # check for att_value
-                    print("** value missing **")
-                    return
-                # type cast as necessary
-                if att_name in HBNBCommand.types:
-                    att_val = HBNBCommand.types[att_name](att_val)
-
-                # update dictionary with name, value pair
-                new_dict.__dict__.update({att_name: att_val})
-
-        new_dict.save()  # save updates to file
+        except Exception as e:
+            if arg.count(' ') == 0:
+                print("** instance id missing **")
+            elif arg.count(' ') == 1:
+                print("** attribute name missing **")
+            elif arg.count(' ') == 2:
+                print("** value missing **")
+            elif arg.count(' ') > 3:
+                # TODO: Allow this case, and ignore the extra arguments
+                print("** too many arguments (2 arguments required)**")
+            else:
+                print(e)
 
     def help_update(self):
         """
