@@ -13,9 +13,6 @@ Update attributes of an object
 Destroy an object
 """
 import cmd
-import re
-import sys
-import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
@@ -275,6 +272,30 @@ if arg == "":
             are of instances of cls.
         """
         pass
+if arg == "":
+            print('** class name missing **')
+            return
+
+        try:
+            # TODO: Handle case where the value to update has a space character
+            model_name, model_id, attr, value = arg.split(' ')
+
+            models.storage.update(model_name, model_id, attr, value)
+            models.storage.save()
+
+        except Exception as e:
+            if arg.count(' ') == 0:
+                print("** instance id missing **")
+            elif arg.count(' ') == 1:
+                print("** attribute name missing **")
+            elif arg.count(' ') == 2:
+                print("** value missing **")
+            elif arg.count(' ') > 3:
+                # TODO: Allow this case, and ignore the extra arguments
+                print("** too many arguments (2 arguments required)**")
+            else:
+                print(e)
+
 
     def default(self, line):
         """
