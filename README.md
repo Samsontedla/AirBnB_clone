@@ -55,10 +55,10 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb) 
 $
+```
 ### Examples
-
-``` Python
-:/AirBnB_clone# ./console.py                                                                                                                   
+```Python
+$ ./console.py                                                                                                                   
 (hbnb) help                                                                                                                                                     
 Documented commands (type help <topic>):                                                                                                                        
 ========================================                                                                                                                        
@@ -88,7 +88,7 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
 ** no instance found **
 (hbnb)                                                                                              
- ```
+```
 # Authors
 ***
   * Samson Tedla <samitedla23@gmail.com>
