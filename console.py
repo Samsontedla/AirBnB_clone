@@ -134,25 +134,22 @@ class HBNBCommand(cmd.Cmd):
         """
             Deletes an instance based on the class name and id
             (save the change into the JSON file).
-        """        new = args.partition(" ")
-               if arg == "":
-            print('** class name missing **')
-            return
-
-        try:
-            model_name, model_id = arg.split(' ')
-            models.classes[model_name]  # check the model is supported
-            models.storage.delete(model_name, model_id)
-            models.storage.save()
-
-        except Exception as e:
-
-            if arg.count(' ') == 0:
-                print("** instance id missing **")
-            elif arg.count(' ') > 1:
-                print("** too many arguments (2 arguments required)**")
-            else:
-                print(e)
+        """       
+        arg_lst = HBNBCommand.parse(arg)
+        storage.reload()
+        db = storage.all()
+        if not len(arg_lst):
+            print("** class name missing **")
+        elif (arg_lst[0] not in HBNBCommand.__class_lst.keys()):
+            print("** class doesn't exist **")
+        elif len(arg_lst) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(arg_lst[0], arg_lst[1]) not in db:
+            print("** no instance found **")
+        else:
+            # print(storage.__class__.__name__.__objects)
+            del db["{}.{}".format(arg_lst[0], arg_lst[1])]
+            storage.save()
 
     def help_destroy(self):
         """
@@ -194,29 +191,47 @@ class HBNBCommand(cmd.Cmd):
                 Ex: $ update BaseModel 1234-1234-1234 email
                       "aibnb@mail.com"
         """
-if arg == "":
-            print('** class name missing **')
-            return
+        arg_list = HBNBCommand.parse(arg)
+        objdict = storage.all()
 
-        try:
-            # TODO: Handle case where the value to update has a space character
-            model_name, model_id, attr, value = arg.split(' ')
-
-            models.storage.update(model_name, model_id, attr, value)
-            models.storage.save()
-
-        except Exception as e:
-            if arg.count(' ') == 0:
-                print("** instance id missing **")
-            elif arg.count(' ') == 1:
-                print("** attribute name missing **")
-            elif arg.count(' ') == 2:
+        if len(arg_list) == 0:
+            print("** class name missing **")
+            return False
+        if arg_list[0] not in HBNBCommand.__class_lst:
+            print("** class doesn't exist **")
+            return False
+        if len(arg_list) == 1:
+            print("** instance id missing **")
+            return False
+        if "{}.{}".format(arg_list[0], arg_list[1]) not in objdict.keys():
+            print("** no instance found **")
+            return False
+        if len(arg_list) == 2:
+            print("** attribute name missing **")
+            return False
+        if len(arg_list) == 3:
+            try:
+                type(eval(arg_list[2])) != dict
+            except NameError:
                 print("** value missing **")
-            elif arg.count(' ') > 3:
-                # TODO: Allow this case, and ignore the extra arguments
-                print("** too many arguments (2 arguments required)**")
+                return False
+        if len(arg_list) == 4:
+            obj = objdict["{}.{}".format(arg_list[0], arg_list[1])]
+            if arg_list[2] in obj.__class__.__dict__.keys():
+                valtype = type(obj.__class__.__dict__[arg_list[2]])
+                obj.__dict__[arg_list[2]] = valtype(arg_list[3])
             else:
-                print(e)
+                obj.__dict__[arg_list[2]] = arg_list[3]
+        elif type(eval(arg_list[2])) == dict:
+            obj = objdict["{}.{}".format(arg_list[0], arg_list[1])]
+            for k, v in eval(arg_list[2]).items():
+                if (k in obj.__class__.__dict__.keys() and type(
+                        obj.__class__.__dict__[k]) in {str, int, float}):
+                    valtype = type(obj.__class__.__dict__[k])
+                    obj.__dict__[k] = valtype(v)
+                else:
+                    obj.__dict__[k] = v
+        storage.save()
 
     def help_update(self):
         """
@@ -271,31 +286,7 @@ if arg == "":
             Gives all the elements inside the FileStorage that
             are of instances of cls.
         """
-        
-if arg == "":
-            print('** class name missing **')
-            return
-
-        try:
-            # TODO: Handle case where the value to update has a space character
-            model_name, model_id, attr, value = arg.split(' ')
-
-            models.storage.update(model_name, model_id, attr, value)
-            models.storage.save()
-
-        except Exception as e:
-            if arg.count(' ') == 0:
-                print("** instance id missing **")
-            elif arg.count(' ') == 1:
-                print("** attribute name missing **")
-            elif arg.count(' ') == 2:
-                print("** value missing **")
-            elif arg.count(' ') > 3:
-                # TODO: Allow this case, and ignore the extra arguments
-                print("** too many arguments (2 arguments required)**")
-            else:
-                print(e)
-
+        pass
 
     def default(self, line):
         """
