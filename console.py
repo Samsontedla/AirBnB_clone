@@ -271,7 +271,7 @@ if arg == "":
             Gives all the elements inside the FileStorage that
             are of instances of cls.
         """
-        pass
+        
 if arg == "":
             print('** class name missing **')
             return
