@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/amenity.py.
+"""
+File: test_amenity.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/amenity.py.
 
 Unittest classes:
     TestAmenity_instantiation

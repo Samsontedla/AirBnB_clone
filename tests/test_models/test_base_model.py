@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 """
+File: test_base_model.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
 Tests classes and functions in the base_model module
 """
 from models.base_model import BaseModel

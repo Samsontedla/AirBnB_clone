@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 """
+File: console.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
 Create a new object (ex: a new User or a new Place)
 Retrieve an object from a file, a database etc…
 Do operations on objects (count, compute stats, etc…)
@@ -7,6 +13,7 @@ Update attributes of an object
 Destroy an object
 """
 import cmd
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -15,6 +22,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+storage = models.storage
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -49,27 +57,25 @@ class HBNBCommand(cmd.Cmd):
         return narg_list
 
     def do_quit(self, arg):
-       """Exits the program"""
+        """Exits the program"""
         return True
 
     def help_quit(self):
-        
- """Prints help for the quit command"""
- print("Quit command to exit the program\n")
+        """Prints help for the quit command"""
+        print("Quit command to exit the program\n")
 
     def do_EOF(self, arg):
-      """Exits the program"""
+        """Exits the program"""
 
         print("")
         return True
 
     def do_create(self, arg):
-       """
-            Creates a new instance of BaseModel,
-            saves it (to the JSON file) and prints
-            the id.
         """
-
+        Creates a new instance of BaseModel,
+        saves it (to the JSON file) and prints
+        the id.
+        """
         arg_lst = HBNBCommand.parse(arg)
         if len(arg_lst) == 0:
             print("** class name missing **")
@@ -95,10 +101,9 @@ class HBNBCommand(cmd.Cmd):
               stores it in the JSON file and prints its id""")
 
     def do_show(self, arg):
-      
-         """
-            Prints the string representation of an instance based
-            on the class name and id.
+        """
+        Prints the string representation of an instance based
+        on the class name and id.
         """
         arg_lst = HBNBCommand.parse(arg)
         db = storage.all()
@@ -241,7 +246,7 @@ class HBNBCommand(cmd.Cmd):
                       email "aibnb@mail.com""")
 
     def emptyline(self):
-         """
+        """
             Does nothing if Empty line + enter is inserted.
             Used for overriding the emptyline function
         """

@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/city.py.
+"""
+File: test_city.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/city.py.
 
 Unittest classes:
     TestCity_instantiation

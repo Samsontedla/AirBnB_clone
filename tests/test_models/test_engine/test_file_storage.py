@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/engine/file_storage.py.
+"""
+File: test_file_storage.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/engine/file_storage.py.
 Unittest classes:
     TestFileStorage_instantiation
     TestFileStorage_methods

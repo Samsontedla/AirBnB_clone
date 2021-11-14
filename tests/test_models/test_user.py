@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/user.py.
+"""
+File: test_user.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/user.py.
 
 Unittest classes:
     TestUser_instantiation

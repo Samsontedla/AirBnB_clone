@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/place.py.
+"""
+File: test_place.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/place.py.
 
 Unittest classes:
     TestPlace_instantiation

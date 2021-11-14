@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-"""Defines unittests for models/state.py.
+"""
+File: test_state.py
+
+Authors:
+        Samson Tedla <samitedla23@gmail.com>
+        Elnatan Samuel <krosection999@gmail.com>
+
+Defines unittests for models/state.py.
 
 Unittest classes:
     TestState_instantiation
