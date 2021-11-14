@@ -14,8 +14,8 @@
 
 $ git clone https://github.com/Samsontedla/AirBnB_clone
 ---
-# Execution
-### shell should work like this in interactive mode:
+## Execution
+### Console should work like this in interactive mode:
 ```Python
 $ ./console.py
 (hbnb) help
@@ -31,7 +31,7 @@ EOF  help  quit
 (hbnb) quit
 $
 ```
-### shell should work like this in non-interactive mode:
+### Console should work like this in non-interactive mode:
 ```Python
 $ echo "help" | ./console.py
 (hbnb)
@@ -55,7 +55,8 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb) 
 $
-# Examples
+### Examples
+
 ``` Python
 :/AirBnB_clone# ./console.py                                                                                                                   
 (hbnb) help                                                                                                                                                     
