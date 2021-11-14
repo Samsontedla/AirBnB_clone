@@ -8,7 +8,6 @@ Authors:
 
 Defines a FileStorage class
 """
-
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -18,9 +17,10 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     """
-    Class that serializes instances to a JSON file 
+    Class that serializes instances to a JSON file
     and deserializes JSON file to instances
     """
     __file_path = "file.json"

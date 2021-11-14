@@ -6,6 +6,7 @@ Unittest classes:
     TestUser_save
     TestUser_to_dict
 """
+import json
 import os
 import models
 import unittest
