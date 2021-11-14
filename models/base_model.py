@@ -56,5 +56,5 @@ class BaseModel:
 
     def __str__(self):
         """Method that prints formatted output"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
+        return "[{}] ({}) {}".format(self.__class__.__name__,
                                          self.id, self.__dict__)

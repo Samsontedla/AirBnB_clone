@@ -24,6 +24,7 @@ from models.review import Review
 
 storage = models.storage
 
+
 class HBNBCommand(cmd.Cmd):
     """
         HBNBCommand - a console class for the the airbnb clone
@@ -42,7 +43,6 @@ class HBNBCommand(cmd.Cmd):
     }
     __class_funcs = ["all", "count", "show", "destroy", "update"]
 
-   
     def parse(arg, id=" "):
         """
         Returns a list conatning the parsed arguments from the string
@@ -96,7 +96,6 @@ class HBNBCommand(cmd.Cmd):
         """
            prints help info for the create function
         """
-       
         print("""Creats a new instance of the first argument
               stores it in the JSON file and prints its id""")
 
@@ -192,7 +191,6 @@ class HBNBCommand(cmd.Cmd):
                 Ex: $ update BaseModel 1234-1234-1234 email
                       "aibnb@mail.com"
         """
-       
         arg_list = HBNBCommand.parse(arg)
         objdict = storage.all()
 
@@ -291,7 +289,6 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, line):
-       
         """
             Handles the case where the the command has no equivlaent
             do_ method.
