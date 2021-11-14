@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
         """
             Deletes an instance based on the class name and id
             (save the change into the JSON file).
-        """       
+        """
         arg_lst = HBNBCommand.parse(arg)
         storage.reload()
         db = storage.all()

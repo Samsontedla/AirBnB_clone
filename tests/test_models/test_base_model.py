@@ -14,6 +14,7 @@ import os
 from time import sleep
 import unittest
 
+
 class TestBaseInitiation(unittest.TestCase):
     """
     Tests the correct initiation of the BaseModel class
@@ -421,7 +422,7 @@ class TestBaseKwargs(unittest.TestCase):
         # Test if returned dictionary from to_dict  and the excpected
         # one are equal
         self.assertDictEqual(self.cls3_dic, self.cls3_obj)
-        #self.assertDictEqual(self.cls4_dic, self.cls4_obj)
+        # self.assertDictEqual(self.cls4_dic, self.cls4_obj)
 
 
 class TestBaseModel_to_dict(unittest.TestCase):
@@ -472,6 +473,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
         bm = BaseModel()
         with self.assertRaises(TypeError):
             bm.to_dict(None)
+
 
 class TestBaseModel_save(unittest.TestCase):
     """Unittests for testing save method of the BaseModel class."""
