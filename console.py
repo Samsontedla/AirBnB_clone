@@ -13,6 +13,9 @@ Update attributes of an object
 Destroy an object
 """
 import cmd
+import re
+import sys
+import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
