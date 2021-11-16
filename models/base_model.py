@@ -23,10 +23,10 @@ class BaseModel:
             args: variable number of arguments(unused)
             kwargs: keyword/value pairs of arguments/attributes
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
-        models.storage.new(self)
+        #self.id = str(uuid.uuid4())
+        #self.created_at = datetime.today()
+        #self.updated_at = datetime.today()
+        #models.storage.new(self)
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -34,7 +34,11 @@ class BaseModel:
                                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = value
-
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.today()
+            self.updated_at = datetime.today()
+            models.storage.new(self)
     def save(self):
         """
         Updates the public instance attribute
